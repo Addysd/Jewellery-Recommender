@@ -1,10 +1,17 @@
-// Recommendations.jsx
-import React, { useState } from "react";
+// src/components/Recommendations.jsx
+
+import React, { useState, useEffect } from "react";
 import Spinner from "./Spinner";
 
 const Recommendations = ({ uploadedImageUrl }) => {
   const [loading, setLoading] = useState(false); // Initial loading state
   const [recommendations, setRecommendations] = useState([]);
+
+  useEffect(() => {
+    if (uploadedImageUrl) {
+      fetchRecommendations();
+    }
+  }, [uploadedImageUrl]);
 
   const fetchRecommendations = async () => {
     setLoading(true); // Set loading to true when fetching recommendations
@@ -13,7 +20,7 @@ const Recommendations = ({ uploadedImageUrl }) => {
       // Simulating API call to get recommendations based on uploaded image
       const response = await fetch(`http://api.example.com/recommendations?image=${uploadedImageUrl}`);
       const data = await response.json();
-      
+
       // Assuming recommendations are received as an array of objects
       setRecommendations(data.recommendations);
     } catch (error) {
@@ -26,26 +33,26 @@ const Recommendations = ({ uploadedImageUrl }) => {
   return (
     <div>
       {uploadedImageUrl && (
-        <div>
-          <h2>Uploaded Image</h2>
-          <img src={uploadedImageUrl} alt="Uploaded" style={{ maxWidth: "100%" }} />
+        <div className="my-8">
+          <h2 className="text-2xl font-bold mb-4">Uploaded Image</h2>
+          <img src={uploadedImageUrl} alt="Uploaded" className="max-w-full mb-4" />
         </div>
       )}
 
       {uploadedImageUrl && (
-        <div>
-          <h2>Recommended Jewellery</h2>
+        <div className="my-8">
+          <h2 className="text-2xl font-bold mb-4">Recommended Jewellery</h2>
 
           {/* Conditionally render Spinner based on loading state */}
           {loading && <Spinner />}
 
           {/* Render recommendations if not loading */}
           {!loading && recommendations.length > 0 && (
-            <div className="recommendations">
+            <div className="grid grid-cols-2 gap-4">
               {recommendations.map((item) => (
-                <div key={item.id} className="recommendation">
-                  <img src={item.image} alt={item.name} />
-                  <p>{item.name}</p>
+                <div key={item.id} className="p-4 border border-gray-200 rounded">
+                  <img src={item.image} alt={item.name} className="w-full mb-2 rounded" />
+                  <p className="text-lg font-semibold">{item.name}</p>
                 </div>
               ))}
             </div>
@@ -53,7 +60,7 @@ const Recommendations = ({ uploadedImageUrl }) => {
 
           {/* Display message if no recommendations */}
           {!loading && recommendations.length === 0 && (
-            <p>No recommendations found.</p>
+            <p className="text-lg">No recommendations found.</p>
           )}
         </div>
       )}
