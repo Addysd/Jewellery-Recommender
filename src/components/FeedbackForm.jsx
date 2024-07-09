@@ -1,8 +1,5 @@
-// src/components/FeedbackForm.jsx
-
 import React, { useState } from 'react';
 import axios from 'axios';
-
 
 const FeedbackForm = () => {
   const [feedback, setFeedback] = useState('');
@@ -25,6 +22,10 @@ const FeedbackForm = () => {
     setIsSubmitting(true);
 
     try {
+      // Simulated post request (replace with actual API endpoint)
+      // const response = await axios.post('/api/submit-feedback', { feedback });
+      
+      // For demonstration, log feedback to console
       console.log('Feedback submitted:', feedback);
 
       setSubmitStatus('Feedback submitted successfully.');
@@ -38,10 +39,10 @@ const FeedbackForm = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-8 p-6 bg-white border border-gray-300 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Provide Feedback</h2>
+    <div className="max-w-2xl mx-auto p-5 bg-gray-100 border border-gray-300 rounded-lg shadow-sm">
+      <h2 className="text-2xl font-bold mb-4">Provide Feedback</h2>
       <form className="flex flex-col" onSubmit={handleSubmit}>
-        <div className="mb-4">
+        <div className="mb-5">
           <label htmlFor="feedbackInput" className="font-bold">Feedback:</label>
           <textarea
             id="feedbackInput"
@@ -49,18 +50,14 @@ const FeedbackForm = () => {
             value={feedback}
             onChange={handleFeedbackChange}
             placeholder="Enter your feedback here..."
-            className="w-full p-2 mt-1 border border-gray-300 rounded"
+            className="w-full p-2 mt-2 resize-vertical"
           ></textarea>
         </div>
-        <button
-          type="submit"
-          className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition-colors"
-          disabled={isSubmitting}
-        >
+        <button type="submit" className="bg-blue-900 text-white rounded px-5 py-3 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed" disabled={isSubmitting}>
           {isSubmitting ? 'Submitting...' : 'Submit Feedback'}
         </button>
       </form>
-      {submitStatus && <p className="mt-4 font-semibold">{submitStatus}</p>}
+      {submitStatus && <p className="mt-4 text-lg font-bold text-green-500">{submitStatus}</p>}
     </div>
   );
 };

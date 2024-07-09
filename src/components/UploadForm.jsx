@@ -1,8 +1,6 @@
-// src/components/UploadForm.jsx
-
 import React, { useState } from 'react';
 
-const UploadForm = () => {
+const UploadForm = ({ onImageUpload }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
 
@@ -23,6 +21,7 @@ const UploadForm = () => {
       console.log('File uploaded:', selectedFile);
 
       setUploadStatus('File uploaded successfully.');
+      onImageUpload(selectedFile); 
       setSelectedFile(null);
     } catch (error) {
       console.error('Error uploading file:', error);

@@ -1,5 +1,3 @@
-// src/App.jsx
-
 import React, { useState } from 'react';
 import Navbar from './components/Navbar';
 import ProductList from './components/ProductList';
@@ -16,8 +14,8 @@ const App = () => {
 
   const products = [
     // Sample product data
-    { id: 1, imageUrl: 'path/to/image1.jpg', title: 'Product 1', description: 'Description for product 1', price: '19.99' },
-    { id: 2, imageUrl: 'path/to/image2.jpg', title: 'Product 2', description: 'Description for product 2', price: '29.99' },
+    { id: 1, imageUrl: 'src/assets/image1.jpg', title: 'Product 1', description: 'Description for product 1', price: '19.99' },
+    { id: 2, imageUrl: 'src/assets/image2.jpg', title: 'Product 2', description: 'Description for product 2', price: '29.99' },
     // Add more products as needed
   ];
 

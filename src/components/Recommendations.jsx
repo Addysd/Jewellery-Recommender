@@ -1,10 +1,8 @@
-// src/components/Recommendations.jsx
-
 import React, { useState, useEffect } from "react";
 import Spinner from "./Spinner";
 
 const Recommendations = ({ uploadedImageUrl }) => {
-  const [loading, setLoading] = useState(false); // Initial loading state
+  const [loading, setLoading] = useState(false);
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
