@@ -1,3 +1,4 @@
+// src/components/UploadForm.jsx
 import React, { useState } from 'react';
 
 const UploadForm = ({ onImageUpload }) => {
@@ -17,11 +18,9 @@ const UploadForm = ({ onImageUpload }) => {
     }
 
     try {
-      // Simulated upload request (replace with actual API endpoint)
       console.log('File uploaded:', selectedFile);
-
       setUploadStatus('File uploaded successfully.');
-      onImageUpload(selectedFile); 
+      onImageUpload(URL.createObjectURL(selectedFile));
       setSelectedFile(null);
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -30,8 +29,8 @@ const UploadForm = ({ onImageUpload }) => {
   };
 
   return (
-    <div id="upload" className="max-w-xl mx-auto mt-8 p-6 bg-white border border-gray-300 rounded-lg shadow-md">
-      <h2 className="text-xl font-semibold mb-4">Upload Image</h2>
+    <div className="max-w-xl mx-auto mt-8 p-6 bg-white border border-gray-300 rounded-lg shadow-md">
+      <h2 className="text-2xl font-semibold mb-4">Upload Image</h2>
       <form className="flex flex-col" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label htmlFor="fileInput" className="font-bold">Choose file:</label>
@@ -44,7 +43,7 @@ const UploadForm = ({ onImageUpload }) => {
         </div>
         <button
           type="submit"
-          className="bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition-colors"
+          className="bg-blue-700 text-white rounded px-4 py-2 hover:bg-blue-800 transition-colors"
         >
           Upload
         </button>

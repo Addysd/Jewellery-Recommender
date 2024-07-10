@@ -1,57 +1,61 @@
 // src/components/Navbar.jsx
-
 import React, { useState } from 'react';
-import myntraLogo from '../assets/myntra-logo.png'; 
+import { NavLink } from 'react-router-dom';
+import Sidebar from './Sidebar';
+import myntraLogo from '../assets/myntra-logo.png';
 
 const Navbar = () => {
-  const [activeButton, setActiveButton] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const handleButtonClick = (buttonName) => {
-    setActiveButton(buttonName);
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
   };
 
   return (
-    <nav className="bg-blue-600 text-white p-4">
-      <div className="container mx-auto flex justify-between items-center">
-        <div className="flex items-center">
-          <img
-            src={myntraLogo}
-            alt="Myntra Logo"
-            className="w-8 h-8 rounded-full mr-2"
-          />
-          <div className="text-xl font-bold">Jewellery-Recommender Myntra</div>
-        </div>
-        <ul className="flex space-x-4">
-          <li>
-            <a
-              href="#products"
-              className={`hover:text-gray-300 ${activeButton === 'products' ? 'bg-black text-white' : ''} px-3 py-2 rounded`}
-              onClick={() => handleButtonClick('products')}
-            >
-              Products
-            </a>
-          </li>
-          <li>
-            <a
-              href="#upload"
-              className={`hover:text-gray-300 ${activeButton === 'upload' ? 'bg-black text-white' : ''} px-3 py-2 rounded`}
-              onClick={() => handleButtonClick('upload')}
+    <>
+      <nav className="bg-blue-700 text-white p-4 shadow-lg">
+        <div className="container mx-auto flex justify-between items-center">
+          <div className="flex items-center">
+            <img
+              src={myntraLogo}
+              alt="Myntra Logo"
+              className="w-10 h-10 rounded-full mr-3"
+            />
+            <div className="text-2xl font-bold">Jewellery-Recommender Myntra</div>
+          </div>
+          <div className="hidden md:flex space-x-6">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded ${isActive ? 'bg-black text-white' : 'hover:bg-blue-600 transition'}`
+              }
             >
               Upload
-            </a>
-          </li>
-          <li>
-            <a
-              href="#feedback"
-              className={`hover:text-gray-300 ${activeButton === 'feedback' ? 'bg-black text-white' : ''} px-3 py-2 rounded`}
-              onClick={() => handleButtonClick('feedback')}
+            </NavLink>
+            <NavLink
+              to="/products"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded ${isActive ? 'bg-black text-white' : 'hover:bg-blue-600 transition'}`
+              }
+            >
+              Products
+            </NavLink>
+            <NavLink
+              to="/feedback"
+              className={({ isActive }) =>
+                `px-4 py-2 rounded ${isActive ? 'bg-black text-white' : 'hover:bg-blue-600 transition'}`
+              }
             >
               Feedback
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+            </NavLink>
+          </div>
+          <button className="md:hidden text-white" onClick={toggleSidebar}>
+            Menu
+          </button>
+        </div>
+      </nav>
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+    </>
   );
 };
 
