@@ -24,7 +24,7 @@ Install the necessary dependencies for both the frontend and backend
 ```
 npm install
 ```
-###Start the Development Server
+### Start the Development Server
 Frontend (React) Development:
 ```
 npm run dev
