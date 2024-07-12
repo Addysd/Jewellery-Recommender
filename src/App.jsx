@@ -39,7 +39,7 @@ const App = () => {
             <Route path="/feedback" element={<FeedbackForm />} />
           </Routes>
         </main>
-        <footer className="bg-blue-700 text-white w-full p-4 text-center mt-auto">
+        <footer className="bg-white text-black w-full py-4 text-center mt-auto">
           <p>&copy; 2024 My Jewellery-Recommender Site</p>
         </footer>
       </div>

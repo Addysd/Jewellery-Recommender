@@ -1,8 +1,14 @@
 /* src/index.css */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    @apply bg-gray-100;
+  background-color: #f0f0f0; /* Light grey background */
+}
+
+.navbar {
+  background-color: #ffffff; /* White background */
+  color: #000000; /* Black text */
 }
