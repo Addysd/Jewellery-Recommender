@@ -77,20 +77,29 @@ def find_top_5_matches(clothing_image_path):
     similarities = cosine_similarity(clothing_feature_reduced, jewellery_in_cluster).flatten()
 
     top_5_indices = similarities.argsort()[-5:][::-1]
-    displayed_paths = set()
+    displayed_paths = []
     for idx in top_5_indices:
         jewellery_image_path = jewellery_image_paths[jewellery_indices_in_cluster[idx]]
         if jewellery_image_path not in displayed_paths:
-            displayed_paths.add(jewellery_image_path)
-            jewellery_image = Image.open(jewellery_image_path)
-            plt.imshow(jewellery_image)
-            plt.title(f"Similarity: {similarities[idx]:.2f}")
-            plt.show()
-        if len(displayed_paths) >= 5:
-            break
+            displayed_paths.append(jewellery_image_path)
+
+    recommended_images = []
+    for image_path in displayed_paths:
+        jewellery_image = Image.open(image_path)
+        recommended_images.append(jewellery_image)
+
+    fig, axes = plt.subplots(1, 5, figsize=(20, 6))
+
+    for i, image in enumerate(recommended_images):
+        axes[i].imshow(image)
+        axes[i].set_title(f"Recommendation {i+1}")
+        axes[i].axis('off')
+
+    plt.tight_layout()
+    plt.show()
 
 # Path to the clothing image (modify as per your directory structure)
-clothing_image_path = 'data/dress-pattern-dataset/animal/3280.jpg'
+clothing_image_path = 'data/dress-pattern-dataset/animal/3281.jpg'
 
 # Display the input clothing image
 ci = Image.open(clothing_image_path)
