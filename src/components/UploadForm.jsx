@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const UploadForm = ({ onImageUpload }) => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [uploadStatus, setUploadStatus] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  //const [imageUrl, setImageUrl] = useState('');
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0]);

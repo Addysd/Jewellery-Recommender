@@ -1,12 +1,7 @@
-// src/components/ProductCard.jsx
+// ProductCard.js
 import React from 'react';
 
-const ProductCard = ({ product }) => {
-  const addToCart = (product) => {
-    // Implement the add to cart functionality here
-    console.log('Added to cart:', product);
-  };
-
+const ProductCard = ({ product, addToCart }) => {
   return (
     <div className="border border-gray-300 rounded-lg p-4 mb-5 w-70 shadow-md flex flex-col items-center text-center transition-transform transform hover:scale-105">
       <img src={product.imageUrl} alt={product.title} className="w-full h-48 object-cover rounded-md mb-3" />

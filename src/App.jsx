@@ -1,4 +1,4 @@
-// src/App.jsx
+// App.js
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
@@ -6,12 +6,22 @@ import UploadForm from './components/UploadForm';
 import FeedbackForm from './components/FeedbackForm';
 import ProductList from './components/ProductList';
 import Recommendations from './components/Recommendations';
+import Cart from './components/Cart';
 
 const App = () => {
   const [uploadedImageUrl, setUploadedImageUrl] = useState('');
+  const [cart, setCart] = useState([]);
 
   const handleImageUpload = (imageUrl) => {
     setUploadedImageUrl(imageUrl);
+  };
+
+  const addToCart = (product) => {
+    setCart((prevCart) => [...prevCart, product]);
+  };
+
+  const removeFromCart = (index) => {
+    setCart((prevCart) => prevCart.filter((_, i) => i !== index));
   };
 
   const products = [
@@ -23,7 +33,7 @@ const App = () => {
   return (
     <Router>
       <div className="min-h-screen bg-gray-100 flex flex-col">
-        <Navbar />
+        <Navbar cart={cart} />
         <main className="container mx-auto p-4">
           <Routes>
             <Route
@@ -35,8 +45,9 @@ const App = () => {
                 </>
               }
             />
-            <Route path="/products" element={<ProductList products={products} />} />
+            <Route path="/products" element={<ProductList products={products} addToCart={addToCart} />} />
             <Route path="/feedback" element={<FeedbackForm />} />
+            <Route path="/cart" element={<Cart cart={cart} removeFromCart={removeFromCart} />} />
           </Routes>
         </main>
         <footer className="bg-white text-black w-full py-4 text-center mt-auto">

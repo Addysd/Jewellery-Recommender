@@ -1,9 +1,10 @@
+// Navbar.js
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa'; // Import FaBars for sidebar icon
-import myntraLogo from '../assets/myntra-logo.png'; 
+import myntraLogo from '../assets/myntra-logo.png';
 
-const Navbar = () => {
+const Navbar = ({ cart }) => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
@@ -34,6 +35,14 @@ const Navbar = () => {
           <Link to="/feedback" className={`hover:text-gray-300 px-3 py-2 rounded ${location.pathname === '/feedback' ? 'bg-black text-white' : ''}`}>
             Feedback
           </Link>
+          <Link to="/cart" className={`relative hover:text-gray-300 px-3 py-2 rounded ${location.pathname === '/cart' ? 'bg-black text-white' : ''}`}>
+            Cart
+            {cart.length > 0 && (
+              <span className="bg-red-500 rounded-full px-2 py-1 text-xs absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2">
+                {cart.length}
+              </span>
+            )}
+          </Link>
         </div>
         <div className="md:hidden">
           <FaBars onClick={toggleSidebar} className="cursor-pointer" />
@@ -56,6 +65,14 @@ const Navbar = () => {
             </Link>
             <Link to="/feedback" className="bg-blue-700 px-3 py-2 rounded" onClick={toggleSidebar}>
               Feedback
+            </Link>
+            <Link to="/cart" className="bg-blue-700 px-3 py-2 rounded" onClick={toggleSidebar}>
+              Cart
+              {cart.length > 0 && (
+                <span className="bg-red-500 rounded-full px-2 py-1 text-xs ml-2">
+                  {cart.length}
+                </span>
+              )}
             </Link>
           </div>
         </div>
