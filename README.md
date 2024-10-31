@@ -17,8 +17,8 @@ To get a local copy of this project up and running, follow these steps:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/Addysd/MYNTRA-HackerRamp.git
-cd MYNTRA-HackerRamp
+git clone https://github.com/Addysd/Jewellery-Recommender.git
+cd Jewellery-Recommender
 ```
 Install the necessary dependencies for both the frontend and backend
 ```
